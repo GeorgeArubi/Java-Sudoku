@@ -1,4 +1,4 @@
-package com.doghousetv.sudoku.constants;
+package com.doghousetv.constants;
 
 public enum Rows {
     TOP,
