@@ -1,9 +1,7 @@
 package com.doghousetv;
-
+import com.doghousetv.userinterface.IUserInterfaceContract;
+import com.doghousetv.userinterface.UserInterfaceImpl;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
