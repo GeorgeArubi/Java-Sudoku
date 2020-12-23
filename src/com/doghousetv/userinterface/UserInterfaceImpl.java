@@ -134,7 +134,13 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
     }
 
     private void drawSudokuBoard(Group root) {
-
+        Rectangle boardBackground = new Rectangle();
+        boardBackground.setX(BOARD_PADDING);
+        boardBackground.setY(BOARD_PADDING);
+        boardBackground.setWidth(BOARD_X_AND_Y);
+        boardBackground.setHeight(BOARD_X_AND_Y);
+        boardBackground.setFill(BOARD_BACKGROUND_COLOR);
+        root.getChildren().add(boardBackground);
     }
 
     private void drawTitle(Group root) {
