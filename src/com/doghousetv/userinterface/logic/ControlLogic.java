@@ -7,7 +7,6 @@ import com.doghousetv.sudoku.SudokuGame;
 import com.doghousetv.userinterface.IUserInterfaceContract;
 
 import java.io.IOException;
-import java.security.MessageDigest;
 
 public class ControlLogic implements IUserInterfaceContract.EventListener {
     private IStorage storage;
