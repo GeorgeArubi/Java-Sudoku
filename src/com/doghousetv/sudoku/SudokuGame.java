@@ -1,4 +1,6 @@
 package com.doghousetv.sudoku;
+import com.doghousetv.constants.GameState;
+
 import java.io.Serializable;
 
 public class SudokuGame implements Serializable {
