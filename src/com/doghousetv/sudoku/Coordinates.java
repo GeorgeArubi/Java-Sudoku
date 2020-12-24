@@ -1,5 +1,7 @@
 package com.doghousetv.sudoku;
 
+import java.util.Objects;
+
 public class Coordinates {
     private final int x;
     private final int y;
@@ -18,7 +20,7 @@ public class Coordinates {
     }
 
     @Override
-    public boolean equals(object o){
+    public boolean equals(Object o){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordinates that = (Coordinates) o;
