@@ -1,10 +1,14 @@
 package com.doghousetv.userinterface;
+import com.doghousetv.constants.GameState;
 import com.doghousetv.sudoku.Coordinates;
 import com.doghousetv.sudoku.SudokuGame;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
@@ -166,26 +170,72 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
 
     @Override
     public void updateSquare(int x, int y, int input) {
+        SudokuTextField tile = textFieldCoordinates.get(new Coordinates(x, y));
 
+        String value = Integer.toString(
+                input
+        );
+
+        if (value.equals("0"))
+            value = "";
+
+        tile.textProperty().setValue(value);
     }
 
     @Override
     public void updateBoard(SudokuGame game) {
+        for (int xIndex = 0; xIndex < 9; xIndex++) {
+            for (int yIndex = 0; yIndex < 9; yIndex++) {
+                TextField tile = textFieldCoordinates.get(new Coordinates(xIndex, yIndex));
 
+                String value = Integer.toString(
+                        game.getCopyOfGridState()[xIndex][yIndex]
+                );
+
+                if (value.equals("0"))
+                    value = "";
+                tile.setText(
+                        value
+                );
+
+                if (game.getGameState() == GameState.NEW){
+                    if (value.equals("")){
+                        tile.setStyle("-fx-opacity: 1;");
+                        tile.setDisable(false);
+                    } else {
+                        tile.setStyle("-fx-opacity: 0.8;");
+                        tile.setDisable(true);
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void showDialog(String message) {
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.OK);
+        dialog.showAndWait();
 
+        if (dialog.getResult() == ButtonType.OK)
+            listener.onDialogClick();
     }
 
     @Override
     public void showError(String message) {
-
+        Alert dialog = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
+        dialog.showAndWait();
     }
 
     @Override
-    public void handle(KeyEvent keyEvent) {
+    public void handle(KeyEvent event) {
+        if (event.getEventType() == KeyEvent.KEY_PRESSED) {
+            if (event.getText().matches("[0-9]")) {
+                int value = Integer.parseInt(event.getText());
+                handleInput(value, event.getSource());
+            } else if (event.getCode() ==)
+        }
+    }
 
+    private void handleInput(int value, Object source) {
     }
 }
