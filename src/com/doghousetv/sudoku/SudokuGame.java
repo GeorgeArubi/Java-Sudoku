@@ -1,4 +1,5 @@
 package com.doghousetv.sudoku;
+import com.doghousetv.computationlogic.SudokuUtilities;
 import com.doghousetv.constants.GameState;
 
 import java.io.Serializable;
@@ -19,6 +20,6 @@ public class SudokuGame implements Serializable {
     }
 
     public int[][] getCopyOfGridState() {
-        return SudokuUtilities.copyYoNewArray(gridState);
+        return SudokuUtilities.copyToNewArray(gridState);
     }
 }
