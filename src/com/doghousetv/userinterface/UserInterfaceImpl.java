@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
@@ -25,7 +26,7 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
     private final Group root;
 
     //How do we keep track of 81 different text fields?
-    private HashMap<Coordinates, SudokuTextField> textFieldCoordinates;
+    private final HashMap<Coordinates, SudokuTextField> textFieldCoordinates;
 
     private IUserInterfaceContract.EventListener listener;
 
@@ -232,10 +233,20 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
             if (event.getText().matches("[0-9]")) {
                 int value = Integer.parseInt(event.getText());
                 handleInput(value, event.getSource());
-            } else if (event.getCode() ==)
+            } else if (event.getCode() == KeyCode.BACK_SPACE) {
+                handleInput(0, event.getSource());
+            } else {
+                ((TextField) event.getSource()).setText("");
+            }
         }
+        event.consume();
     }
 
     private void handleInput(int value, Object source) {
+        listener.onSudokuInput(
+                ((SudokuTextField) source).getX(),
+                ((SudokuTextField) source).getY(),
+                value
+        );
     }
 }
