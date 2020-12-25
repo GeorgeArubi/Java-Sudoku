@@ -23,18 +23,25 @@ public class GameLogic {
         return GameState.COMPLETE;
     }
 
-    private static boolean sudokuIsInvalid(int[][] grid) {
+    public static boolean sudokuIsInvalid(int[][] grid) {
         if (rowsAreInvalid(grid)) return true;
         if (columnsAreInvalid(grid)) return true;
         if (squaresAreInvalid(grid)) return true;
         else return false;
     }
 
-    private static boolean rowsAreInvalid(int[][] grid) {
+    public static boolean rowsAreInvalid(int[][] grid) {
+        for (int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++) {
+            List<Integer> row = new ArrayList<>();
+            for (int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++) {
+                row.add(grid[xIndex][yIndex]);
+            }
+            if (collectionHasRepeats(row)) return true;
+        }
         return false;
     }
 
-    private static boolean columnsAreInvalid(int[][] grid) {
+    public static boolean columnsAreInvalid(int[][] grid) {
         for (int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++) {
             List<Integer> row = new ArrayList<>();
             for (int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++) {
@@ -45,7 +52,7 @@ public class GameLogic {
         return false;
     }
 
-    private static boolean squaresAreInvalid(int[][] grid) {
+    public static boolean squaresAreInvalid(int[][] grid) {
         if (rowsOfSquaresInvalid(Rows.TOP, grid)) return true;
         if (rowsOfSquaresInvalid(Rows.MIDDLE, grid)) return true;
         if (rowsOfSquaresInvalid(Rows.BOTTOM, grid)) return true;
@@ -77,7 +84,7 @@ public class GameLogic {
         }
     }
 
-    private static boolean squareIsInvalid(int xIndex, int yIndex, int[][] grid) {
+    public static boolean squareIsInvalid(int xIndex, int yIndex, int[][] grid) {
         int yIndexEnd = yIndex + 3;
         int xIndexEnd = xIndex + 3;
 
@@ -95,14 +102,14 @@ public class GameLogic {
         return false;
     }
 
-    private static boolean collectionHasRepeats(List<Integer> collection) {
+    public static boolean collectionHasRepeats(List<Integer> collection) {
         for (int index = 1; index <= GRID_BOUNDARY; index++) {
             if (Collections.frequency(collection, index) > 1) return true;
         }
         return false;
     }
 
-    private static boolean tilesAreNotFilled(int[][] grid) {
+    public static boolean tilesAreNotFilled(int[][] grid) {
         for (int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++) {
             for (int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++) {
                 if (grid[xIndex][yIndex] == 0)
