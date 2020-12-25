@@ -23,8 +23,20 @@ public class GameLogic {
     private static boolean sudokuIsInvalid(int[][] grid) {
         if (rowsAreInvalid(grid)) return true;
         if (columnsAreInvalid(grid)) return true;
-        if (sqauresAreInvalid(grid)) return true;
+        if (squaresAreInvalid(grid)) return true;
         else return false;
+    }
+
+    private static boolean rowsAreInvalid(int[][] grid) {
+        return false;
+    }
+
+    private static boolean columnsAreInvalid(int[][] grid) {
+        return false;
+    }
+
+    private static boolean squaresAreInvalid(int[][] grid) {
+        return false;
     }
 
     private static boolean tilesAreNotFilled(int[][] grid) {
