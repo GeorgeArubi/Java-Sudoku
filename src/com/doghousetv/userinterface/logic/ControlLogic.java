@@ -1,5 +1,6 @@
 package com.doghousetv.userinterface.logic;
 
+import com.doghousetv.computationlogic.GameLogic;
 import com.doghousetv.constants.GameState;
 import com.doghousetv.constants.Messages;
 import com.doghousetv.sudoku.IStorage;
