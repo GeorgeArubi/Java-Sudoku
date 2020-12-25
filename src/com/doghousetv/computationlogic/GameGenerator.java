@@ -28,7 +28,7 @@ public class GameGenerator {
             while (allocations < GRID_BOUNDARY) {
                 if (interrupt > 200) {
                     allocTracker.forEach(coord -> {
-                       newGrid[coord.getX()][coord.getY()] = 0;
+                        newGrid[coord.getX()][coord.getY()] = 0;
                     });
 
                     interrupt = 0;
@@ -42,9 +42,24 @@ public class GameGenerator {
                         value = 1;
                     }
                 }
+
+                int xCoordinate = random.nextInt(GRID_BOUNDARY);
+                int yCoordinate = random.nextInt(GRID_BOUNDARY);
+
+                if (newGrid[xCoordinate][yCoordinate] == 0) {
+                    newGrid[xCoordinate][yCoordinate] = value;
+
+                    if (GameLogic.sudokuIsInvalid(newGrid)) {
+                        newGrid[xCoordinate][yCoordinate] = 0;
+                        interrupt++;
+                    } else {
+                        allocTracker.add(new Coordinates(xCoordinate, yCoordinate));
+                        allocations++;
+                    }
+                }
             }
         }
-        return new int[0][];
+        return newGrid;
     }
 
     private static void clearArray(int[][] newGrid) {
