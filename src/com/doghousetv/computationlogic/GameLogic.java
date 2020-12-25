@@ -45,12 +45,27 @@ public class GameLogic {
         return false;
     }
 
-    private static boolean rowsOfSquaresInvalid(Rows top, int[][] grid) {
+    private static boolean rowsOfSquaresInvalid(Rows value, int[][] grid) {
         switch(value) {
             case TOP:
                 if (squareIsInvalid(0, 0, grid)) return true;
                 if (squareIsInvalid(0, 3, grid)) return true;
                 if (squareIsInvalid(0, 6, grid)) return true;
+                return false;
+
+            case MIDDLE:
+                if (squareIsInvalid(3, 0, grid)) return true;
+                if (squareIsInvalid(3, 3, grid)) return true;
+                if (squareIsInvalid(3, 6, grid)) return true;
+                return false;
+
+            case BOTTOM:
+                if (squareIsInvalid(6, 0, grid)) return true;
+                if (squareIsInvalid(6, 3, grid)) return true;
+                if (squareIsInvalid(6, 6, grid)) return true;
+                return false;
+
+            default:
                 return false;
         }
     }
@@ -61,7 +76,20 @@ public class GameLogic {
 
         List<Integer> square = new ArrayList<>();
 
-        while (yIndex)
+        while (yIndex < yIndexEnd) {
+            while (xIndex <xIndexEnd) {
+                square.add(grid[xIndex][yIndex]);
+                xIndex++;
+            }
+            xIndex -= 3;
+            yIndex++;
+        }
+        if (collectionHasRepeats(square)) return true;
+        return false;
+    }
+
+    private static boolean collectionHasRepeats(List<Integer> square) {
+        return false;
     }
 
     private static boolean tilesAreNotFilled(int[][] grid) {
