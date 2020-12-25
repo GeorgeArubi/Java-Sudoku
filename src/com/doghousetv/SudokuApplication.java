@@ -1,12 +1,13 @@
 package com.doghousetv;
-import com.doghousetv.userinterface.IUserInterfaceContract;
+
+import com.doghousetv.buildlogic.SudokuBuildLogic;
 import com.doghousetv.userinterface.UserInterfaceImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SudokuApplication extends Application{
-    private UserInterfaceImpl uimpl;
+    private UserInterfaceImpl uiImpl;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
