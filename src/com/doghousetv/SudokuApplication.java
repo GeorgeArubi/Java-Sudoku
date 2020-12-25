@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SudokuApplication extends Application{
-    private IUserInterfaceContract.View uiImpl;
+    private UserInterfaceImpl uimpl;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
