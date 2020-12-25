@@ -15,17 +15,16 @@ public class GameLogic {
     }
 
     public static GameState checkForCompletion(int[][] grid) {
-        if (sudokuIsInvalid(grid))
-            return GameState.ACTIVE;
-
-        if (tilesAreNotFilled(grid))
-            return GameState.ACTIVE;
-
+        if (sudokuIsInvalid(grid)) return GameState.ACTIVE;
+        if (tilesAreNotFilled(grid)) return GameState.ACTIVE;
         return GameState.COMPLETE;
     }
 
     private static boolean sudokuIsInvalid(int[][] grid) {
-        return false;
+        if (rowsAreInvalid(grid)) return true;
+        if (columnsAreInvalid(grid)) return true;
+        if (sqauresAreInvalid(grid)) return true;
+        else return false;
     }
 
     private static boolean tilesAreNotFilled(int[][] grid) {
@@ -38,5 +37,5 @@ public class GameLogic {
         return false;
     }
 
-    
+
 }
