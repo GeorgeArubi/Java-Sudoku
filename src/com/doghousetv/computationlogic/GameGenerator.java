@@ -48,6 +48,10 @@ public class GameGenerator {
     }
 
     private static void clearArray(int[][] newGrid) {
-
+        for (int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++){
+            for (int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++) {
+                newGrid[xIndex][yIndex] = 0;
+            }
+        }
     }
 }
