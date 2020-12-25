@@ -13,6 +13,35 @@ public class GameGenerator {
         return unsolvedGame(getSolvedGame());
     }
 
+    private static int[][] unsolvedGame(int[][] solvedGame) {
+        Random random = new Random(System.currentTimeMillis());
+
+        boolean solvable = false;
+
+        int[][] solvableArray = new int[GRID_BOUNDARY][GRID_BOUNDARY];
+
+        while (solvable == false){
+            SudokuUtilities.copySudokuArrayValues(solvedGame, solvableArray);
+
+            int index = 0;
+            while (index < 40){
+                int xCoordinate = random.nextInt(GRID_BOUNDARY);
+                int yCoordinate = random.nextInt(GRID_BOUNDARY);
+
+                if (solvableArray[xCoordinate][yCoordinate] != 0) {
+                    solvableArray[xCoordinate][yCoordinate] = 0;
+                    index++;
+                }
+            }
+
+            int[][] toBeSolved = new int[GRID_BOUNDARY][GRID_BOUNDARY];
+            SudokuUtilities.copySudokuArrayValues(solvableArray, toBeSolved);
+
+            solvable = SudokuSolver.puzzleIsSolvable(toBeSolved);
+        }
+        return solvableArray;
+    }
+
     private static int[][] getSolvedGame() {
         Random random = new Random(System.currentTimeMillis());
         int[][] newGrid = new int[GRID_BOUNDARY][GRID_BOUNDARY];
