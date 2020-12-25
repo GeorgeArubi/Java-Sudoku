@@ -1,7 +1,10 @@
 package com.doghousetv.computationlogic;
 
 import com.doghousetv.constants.GameState;
+import com.doghousetv.constants.Rows;
 import com.doghousetv.sudoku.SudokuGame;
+
+import java.util.*;
 
 import static com.doghousetv.sudoku.SudokuGame.GRID_BOUNDARY;
 
@@ -36,7 +39,29 @@ public class GameLogic {
     }
 
     private static boolean squaresAreInvalid(int[][] grid) {
+        if (rowsOfSquaresInvalid(Rows.TOP, grid)) return true;
+        if (rowsOfSquaresInvalid(Rows.MIDDLE, grid)) return true;
+        if (rowsOfSquaresInvalid(Rows.BOTTOM, grid)) return true;
         return false;
+    }
+
+    private static boolean rowsOfSquaresInvalid(Rows top, int[][] grid) {
+        switch(value) {
+            case TOP:
+                if (squareIsInvalid(0, 0, grid)) return true;
+                if (squareIsInvalid(0, 3, grid)) return true;
+                if (squareIsInvalid(0, 6, grid)) return true;
+                return false;
+        }
+    }
+
+    private static boolean squareIsInvalid(int xIndex, int yIndex, int[][] grid) {
+        int yIndexEnd = yIndex + 3;
+        int xIndexEnd = xIndex + 3;
+
+        List<Integer> square = new ArrayList<>();
+
+        while (yIndex)
     }
 
     private static boolean tilesAreNotFilled(int[][] grid) {
