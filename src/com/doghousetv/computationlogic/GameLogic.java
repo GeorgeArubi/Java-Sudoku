@@ -88,7 +88,10 @@ public class GameLogic {
         return false;
     }
 
-    private static boolean collectionHasRepeats(List<Integer> square) {
+    private static boolean collectionHasRepeats(List<Integer> collection) {
+        for (int index = 1; index <= GRID_BOUNDARY; index++) {
+            if (Collections.frequency(collection, index) > 1) return true;
+        }
         return false;
     }
 
@@ -101,6 +104,4 @@ public class GameLogic {
         }
         return false;
     }
-
-
 }
