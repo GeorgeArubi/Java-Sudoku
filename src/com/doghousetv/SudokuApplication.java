@@ -13,7 +13,7 @@ public class SudokuApplication extends Application{
     public void start(Stage primaryStage) throws Exception{
         uiImpl = new UserInterfaceImpl(primaryStage);
         try {
-            SudokuBuildlogic.build(uiImpl);
+            SudokuBuildLogic.build(uiImpl);
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
