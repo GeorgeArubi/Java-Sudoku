@@ -1,6 +1,7 @@
 package com.doghousetv.buildlogic;
 
 import com.doghousetv.computationlogic.GameLogic;
+import com.doghousetv.persistence.LocalStorageImpl;
 import com.doghousetv.sudoku.IStorage;
 import com.doghousetv.sudoku.SudokuGame;
 import com.doghousetv.userinterface.IUserInterfaceContract;
